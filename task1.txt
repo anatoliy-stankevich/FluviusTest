@@ -1,0 +1,55 @@
+1. Есть массив [10, 20, 30].
+Поменяйте местами 0 и 1 элементы, чтобы получилось [20, 10, 30]
+
+const list = [10, 20, 30];
+
+function changeElements(list) {
+	list.splice(0, 2, list[1], list[0]);
+}
+
+changeElements(list);
+
+console.log(list); // [20, 10, 30];
+
+2. Есть массив [30, -5, 0, 10, 5].
+Напишите функцию сортировки от наименьшего к наибольшему, результат [-5, 0, 5, 10, 30] . Не используйте стандартную функцию sort.
+
+const list = [30, -5, 0, 10, 5];
+
+function mySort(list) {
+	var tempList = [];
+	list.forEach(function(element) {
+	  tempList.push(element);
+	});
+	
+	for(var i in list){
+		let min = Math.min.apply(null,tempList);
+		let index = tempList.indexOf(min);
+		tempList.splice(index, 1);
+		
+		list.splice(i, 1, min);
+	}
+}
+
+mySort(list);
+
+console.log(list); // [-5, 0, 5, 10, 30]
+
+3. Напишите свою реализацию bind.
+var func1 = function(message) {
+	this(message);
+}
+
+var func2 = func1.bind(alert);
+func2('Test'); // alert 'Test'
+
+function myBind(func, context) {
+	var bindArgs = [].slice.call(arguments, 2);
+	return function() {
+		var fnArgs = [].slice.call(arguments);
+		return func.apply(context, bindArgs.concat(fnArgs));
+	};
+}
+
+var func3 = myBind(func1, alert);
+func3('Test'); // alert 'Test'
