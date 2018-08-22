@@ -13,17 +13,17 @@
 	</p>
 	<pre>
 		function myMax($xs) {
-			$min = 0;
+			$max = 0;
 			foreach($xs as $key=>$value){
 				if(is_array($value)){
-					if($min < myMax($value))
-						$min = myMax($value);
+					if($max < myMax($value))
+						$max = myMax($value);
 				}else{
-					if($min < $value)
-						$min = $value;
+					if($max < $value)
+						$max = $value;
 				}
 			}
-			return $min;
+			return $max;
 		}
 		 
 		echo myMax([1, 2, [3, 4]]); // 4
@@ -31,17 +31,17 @@
 <?php
  
 	function myMax($xs) {
-		$min = 0;
+		$max = 0;
 		foreach($xs as $key=>$value){
 			if(is_array($value)){
-				if($min < myMax($value))
-					$min = myMax($value);
+				if($max < myMax($value))
+					$max = myMax($value);
 			}else{
-				if($min < $value)
-					$min = $value;
+				if($max < $value)
+					$max = $value;
 			}
 		}
-		return $min;
+		return $max;
 	}
 	 
 	echo myMax([1, 2, [3, 4]]); // 4
